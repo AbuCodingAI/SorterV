@@ -13,7 +13,7 @@ echo.
 REM Check if repo URL provided
 if "%1"=="" (
     echo Usage: setup.bat ^<github-repo-url^>
-    echo Example: setup.bat https://github.com/your-username/Sorter.git
+    echo Example: setup.bat https://github.com/AbuCodingAI/Sorter.git
     pause
     exit /b 1
 )
