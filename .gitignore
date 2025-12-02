@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Config
+config.json
+
+# Build artifacts
+Sorter/build/
+Sorter/dist/Sorter.exe
+Sorter/dist/Sorter.spec
+
+# Keep split files and construct.bat
+!Sorter/dist/Sorter.exe.part1
+!Sorter/dist/Sorter.exe.part2
+!Sorter/dist/construct.bat

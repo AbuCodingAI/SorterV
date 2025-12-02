@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorter - File Management Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-top: 40px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #0d7377, #14919b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 1.2em;
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .feature {
+            background: rgba(45, 45, 45, 0.8);
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #404040;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            border-color: #0d7377;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(13, 115, 119, 0.2);
+        }
+
+        .feature h3 {
+            color: #0d7377;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .feature p {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .download-section {
+            background: rgba(13, 115, 119, 0.1);
+            border: 2px solid #0d7377;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .download-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #0d7377;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-size: 1em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0d7377, #14919b);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(13, 115, 119, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(13, 115, 119, 0.2);
+            color: #0d7377;
+            border: 2px solid #0d7377;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(13, 115, 119, 0.3);
+        }
+
+        .info-box {
+            background: rgba(45, 45, 45, 0.8);
+            border-left: 4px solid #0d7377;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .info-box h4 {
+            color: #0d7377;
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .file-list {
+            background: rgba(45, 45, 45, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #404040;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid #404040;
+        }
+
+        .file-item:last-child {
+            border-bottom: none;
+        }
+
+        .file-name {
+            color: #0d7377;
+            font-weight: bold;
+        }
+
+        .file-size {
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .readme-section {
+            background: rgba(45, 45, 45, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #404040;
+            margin-bottom: 50px;
+        }
+
+        .readme-section h2 {
+            color: #0d7377;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .readme-section h3 {
+            color: #14919b;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .readme-section p {
+            color: #ccc;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .readme-section ul {
+            color: #ccc;
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .readme-section li {
+            margin-bottom: 8px;
+        }
+
+        code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #0d7377;
+            font-family: 'Courier New', monospace;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            border-top: 1px solid #404040;
+            margin-top: 50px;
+        }
+
+        .system-req {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .req-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #0d7377;
+        }
+
+        .req-item strong {
+            color: #0d7377;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .download-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 Sorter</h1>
+            <p class="tagline">Intelligent File Management Tool</p>
+            <p style="color: #888; font-size: 0.95em;">Find, organize, and manage your files with ease</p>
+        </header>
+
+        <div class="features">
+            <div class="feature">
+                <h3>🔍 Keyword Sorter</h3>
+                <p>Search files by keyword with intelligent matching. Case-insensitive, plural detection, and batch
+                    operations.</p>
+            </div>
+            <div class="feature">
+                <h3>⏰ TimeSort</h3>
+                <p>Find files not accessed in X days. Perfect for cleanup and archiving old files.</p>
+            </div>
+            <div class="feature">
+                <h3>🧠 SmartSort</h3>
+                <p>Analyze files by name patterns and get smart organization suggestions. One-click setup.</p>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <h2>📥 Download Sorter</h2>
+
+            <div class="info-box">
+                <h4>System Requirements</h4>
+                <div class="system-req">
+                    <div class="req-item">
+                        <strong>OS:</strong> Windows 10/11 (64-bit)
+                    </div>
+                    <div class="req-item">
+                        <strong>RAM:</strong> 2 GB minimum
+                    </div>
+                    <div class="req-item">
+                        <strong>Disk:</strong> 100 MB
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: #0d7377; margin-bottom: 15px;">Option 1: Split Files (Recommended)</h3>
+            <p style="color: #aaa; margin-bottom: 15px;">Download both parts and run construct.bat to assemble</p>
+
+            <div class="file-list">
+                <div class="file-item">
+                    <span class="file-name">📦 Sorter.exe.part1</span>
+                    <span class="file-size">17.74 MB</span>
+                </div>
+                <div class="file-item">
+                    <span class="file-name">📦 Sorter.exe.part2</span>
+                    <span class="file-size">17.74 MB</span>
+                </div>
+                <div class="file-item">
+                    <span class="file-name">🔧 construct.bat</span>
+                    <span class="file-size">2 KB</span>
+                </div>
+            </div>
+
+            <div class="download-buttons">
+                <a href="/downloads/Sorter.exe.part1" class="btn btn-primary" download>⬇️ Download Part 1</a>
+                <a href="/downloads/Sorter.exe.part2" class="btn btn-primary" download>⬇️ Download Part 2</a>
+                <a href="/downloads/construct.bat" class="btn btn-secondary" download>⬇️ Download construct.bat</a>
+            </div>
+
+            <div class="info-box" style="margin-top: 20px;">
+                <h4>How to Install</h4>
+                <p>1. Download all three files above<br>
+                    2. Place them in the same folder<br>
+                    3. Double-click <code>construct.bat</code><br>
+                    4. Run <code>Sorter.exe</code></p>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid #404040; margin: 30px 0;">
+
+            <h3 style="color: #0d7377; margin-bottom: 15px;">Option 2: Full Executable</h3>
+            <p style="color: #aaa; margin-bottom: 15px;">Single file download (35.49 MB)</p>
+
+            <div class="download-buttons">
+                <a href="/downloads/Sorter.exe" class="btn btn-primary" download>⬇️ Download Sorter.exe</a>
+            </div>
+        </div>
+
+        <div class="readme-section">
+            <h2>📖 About Sorter</h2>
+
+            <h3>What is Sorter?</h3>
+            <p>Sorter is a modern, intelligent file management application that helps you find, organize, and manage
+                files on your computer. It combines three powerful tools in one elegant interface.</p>
+
+            <h3>Features</h3>
+            <ul>
+                <li><strong>Keyword Sorter:</strong> Search files by keyword with case-insensitive matching and plural
+                    detection</li>
+                <li><strong>TimeSort:</strong> Find files not accessed in X days for cleanup and archiving</li>
+                <li><strong>SmartSort:</strong> Analyze files by name patterns and get smart organization suggestions
+                </li>
+                <li><strong>Batch Operations:</strong> Delete, copy, or move multiple files at once</li>
+                <li><strong>Modern UI:</strong> Glossy dark theme with smooth animations</li>
+                <li><strong>Privacy-First:</strong> All operations are local, no data transmission</li>
+            </ul>
+
+            <h3>Quick Start</h3>
+            <p>1. Launch Sorter.exe<br>
+                2. Grant file explorer access permission<br>
+                3. Choose a tool from the tabs<br>
+                4. Select a folder and start organizing</p>
+
+            <h3>System Requirements</h3>
+            <ul>
+                <li>Windows 10 or Windows 11 (64-bit)</li>
+                <li>2 GB RAM minimum, 4 GB recommended</li>
+                <li>100 MB free disk space</li>
+            </ul>
+
+            <h3>Privacy & Security</h3>
+            <ul>
+                <li>✓ All operations happen locally on your computer</li>
+                <li>✓ No data is sent to external servers</li>
+                <li>✓ File contents are never read unless you ask</li>
+                <li>✓ Permission-based access control</li>
+            </ul>
+
+            <h3>License</h3>
+            <p>Sorter is licensed under the MIT License - free to use, modify, and distribute.</p>
+
+            <h3>Need Help?</h3>
+            <p>Check the <a href="https://github.com/your-repo/Sorter"
+                    style="color: #0d7377; text-decoration: none;">GitHub repository</a> for documentation and support.
+            </p>
+        </div>
+
+        <footer>
+            <p>Sorter v1.0.0 | Made with ❤️ for better file management</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">© 2025 Sorter Contributors | MIT License</p>
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorter - File Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Sorter</h1>
+            <p>Search and manage files by keyword</p>
+        </header>
+
+        <div class="search-section">
+            <input type="text" id="keywordInput" placeholder="Enter keyword (e.g., backup)" class="keyword-input">
+            <button id="browseBtn" class="btn btn-primary">Browse Folder</button>
+            <button id="searchBtn" class="btn btn-primary">Search</button>
+        </div>
+
+        <div id="folderPath" class="folder-path"></div>
+
+        <div class="results-section">
+            <div class="results-header">
+                <h2>Results</h2>
+                <span id="resultCount" class="result-count"></span>
+            </div>
+
+            <div class="file-list" id="fileList"></div>
+
+            <div class="actions-section" id="actionsSection" style="display: none;">
+                <h3>Actions</h3>
+                <div class="action-buttons">
+                    <button id="deleteBtn" class="btn btn-danger">Delete Selected</button>
+                    <button id="copyBtn" class="btn btn-info">Copy Selected</button>
+                    <button id="folderBtn" class="btn btn-info">Move to Folder</button>
+                    <button id="selectAllBtn" class="btn btn-secondary">Select All</button>
+                    <button id="clearBtn" class="btn btn-secondary">Clear Selection</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

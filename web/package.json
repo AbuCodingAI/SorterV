@@ -1,0 +1,16 @@
+{
+    "name": "sorter-web",
+    "version": "1.0.0",
+    "description": "Sorter - Intelligent File Management Tool",
+    "scripts": {
+        "dev": "python -m http.server 3000",
+        "build": "echo 'No build needed for static site'"
+    },
+    "keywords": [
+        "file-management",
+        "sorter",
+        "organization"
+    ],
+    "author": "Sorter Contributors",
+    "license": "MIT"
+}
